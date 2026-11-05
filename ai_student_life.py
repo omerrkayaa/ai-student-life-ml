@@ -143,7 +143,7 @@ def run_eda(df):
         (TARGET, "Distribution of Impact on Grades", "target_distribution.png"),
         ("AI_Tool_Used", "Distribution of AI Tools Used", "ai_tools_distribution.png"),
     ]:
-        ax = df[column].value_counts().plot(kind="bar", figsize=(7, 5))
+        ax = df[column].value_counts().plot(kind="bar", figsize=(7, 5), rot=0)
         ax.set_title(title)
         ax.set_ylabel("Number of Students")
         save_fig(filename)
@@ -292,7 +292,8 @@ def analyse_best_model(name, X, y, X_train, X_test, y_train, y_test):
     plt.yticks(range(len(labels)), labels)
     for i in range(len(labels)):
         for j in range(len(labels)):
-            plt.text(j, i, cm[i, j], ha="center", va="center", fontsize=11)
+            plt.text(j, i, cm[i, j], ha="center", va="center", fontsize=11,
+                     color="white" if cm[i, j] > cm.max() / 2 else "black")
     plt.title(f"Confusion Matrix - {name} (hold-out test)")
     plt.xlabel("Predicted")
     plt.ylabel("Actual")

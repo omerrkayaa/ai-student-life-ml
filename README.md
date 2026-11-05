@@ -63,7 +63,7 @@ Hedefle en yüksek ilişki `City`'de görünüyor (Cramér's V 0.19). Ancak bu d
 
 ![CV karşılaştırması](results/figures/model_comparison_cv_f1.png)
 
-Üç sınıf dengeli olduğu için şans seviyesi yaklaşık 0.33. Modellerin hepsi 0.32 ile 0.38 arasında kalıyor. Dört model baseline'ın altında. Hold-out ve train/val/test sonuçlarında model sıralaması da her seferinde değişiyor: CV'de birinci olan Decision Tree, hold-out'ta KNN ve Gradient Boosting'in gerisinde. Bu da farkların büyük kısmının gürültü olduğunu gösteriyor.
+Üç sınıf dengeli olduğu için şans seviyesi yaklaşık 0.33. CV'de modellerin hepsi 0.32 ile 0.37 arasında kalıyor ve dört model baseline'ın altında. Hold-out'ta Logistic Regression 0.28'e kadar düşüyor. Hold-out ve train/val/test sonuçlarında model sıralaması da her seferinde değişiyor: CV'de birinci olan Decision Tree, hold-out'ta KNN ve Gradient Boosting'in gerisinde. Bu da farkların büyük kısmının gürültü olduğunu gösteriyor.
 
 Decision Tree için permutation testinde gerçek etiketlerle F1 0.370, karıştırılmış etiketlerle ortalama 0.310 çıktı (p ≈ 0.02). Ancak bu model altı model arasından en iyisi diye seçildiği için bu p-değeri iyimser. Çoklu karşılaştırma düzeltmesi yapılınca (ör. Bonferroni, 6 model) anlamlılık ortadan kalkıyor.
 
