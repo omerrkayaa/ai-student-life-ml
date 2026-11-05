@@ -89,7 +89,8 @@ def save_fig(name):
 
 def cramers_v(x, y):
     table = pd.crosstab(x, y)
-    chi2 = chi2_contingency(table)[0]
+    # Yates' correction would pull 2x2 tables (e.g. Gender vs Gender) below 1.
+    chi2 = chi2_contingency(table, correction=False)[0]
     n = table.to_numpy().sum()
     r, k = table.shape
     if min(r, k) == 1:
@@ -129,7 +130,7 @@ def stacked_impact_plot(df, column, title, filename):
     table = pd.crosstab(df[column], df[TARGET], normalize="index").round(3)
     table.to_csv(OUT_DIR / f"impact_by_{filename}_normalized.csv")
 
-    ax = table.plot(kind="bar", stacked=True, figsize=(9, 5))
+    ax = table.plot(kind="bar", stacked=True, figsize=(9, 5), rot=0)
     ax.set_title(title)
     ax.set_xlabel(column.replace("_", " "))
     ax.set_ylabel("Proportion")
@@ -171,7 +172,9 @@ def run_eda(df):
     plt.yticks(range(len(cols)), cols)
     for i in range(len(cols)):
         for j in range(len(cols)):
-            plt.text(j, i, f"{assoc.iat[i, j]:.2f}", ha="center", va="center", fontsize=8)
+            v = assoc.iat[i, j]
+            plt.text(j, i, f"{v:.2f}", ha="center", va="center", fontsize=8,
+                     color="black" if v > 0.5 else "white")
     plt.title("Categorical Association (Cramér's V)")
     save_fig("categorical_association_matrix_cramers_v.png")
 

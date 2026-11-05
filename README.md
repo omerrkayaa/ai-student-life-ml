@@ -17,6 +17,24 @@ Kısaca sonuç: modeller rastgele tahminden belirgin şekilde iyi değil. Veri s
 
 Dosya adı "india" olsa da veri iki ayrı örneklemin birleşimi. İlk 300 satır Hindistan şehirlerinden geliyor. Son 100 satırın hepsi Pakistan şehirlerinden (Lahore, Karachi, Multan...) ve `Student_ID` bu satırlarda 1'den yeniden başlıyor. Bu yüzden 100 ID tekrarlıyor. `City` değişkeni dolaylı olarak "hangi örneklem" bilgisini de taşıyor. Mutual information sıralamasında Faisalabad ve Lahore'un üst sıralarda çıkmasının sebebi büyük ihtimalle bu.
 
+## Keşifsel analiz
+
+Modellemeden önce de tablo pek umut vermiyordu. Araçlara ve kullanım süresine göre sınıf oranları birbirine çok yakın:
+
+<p>
+  <img src="results/figures/impact_by_ai_tool_stacked.png" width="49%" alt="Araçlara göre etki">
+  <img src="results/figures/usage_hours_by_impact_boxplot.png" width="49%" alt="Kullanım süresine göre etki">
+</p>
+
+Notion AI kullananlarda "Improved" oranı daha yüksek (%47), Grammarly'de ise "Slight Decline" (%46). Ama bu iki grupta sadece 15 ve 24 öğrenci var; bu kadar küçük gruplarda birkaç öğrencinin sınıfı bile oranı ciddi şekilde oynatır. Kalabalık gruplar olan ChatGPT, Gemini ve Copilot (108–129 öğrenci) birbirine çok yakın. Günlük kullanım süresinin dağılımı üç sınıfta neredeyse aynı.
+
+<p>
+  <img src="results/figures/categorical_association_matrix_cramers_v.png" width="49%" alt="Cramér's V matrisi">
+  <img src="results/figures/feature_selection_mutual_information_top15.png" width="49%" alt="Mutual information">
+</p>
+
+Hedefle en yüksek ilişki `City`'de görünüyor (Cramér's V 0.19). Ancak bu değer kısmen yanıltıcı: 15 kategorili bir değişkende düzeltilmemiş Cramér's V yukarı doğru yanlı oluyor. Üstüne, yukarıda anlatıldığı gibi `City` hangi örneklemden gelindiğini de gösteriyor. Diğer değişkenlerin hepsi 0.1'in altında.
+
 ## Yöntem
 
 - **Ön işleme:** sayısal sütunlara `StandardScaler`, kategoriklere one-hot encoding. İkisi de `Pipeline` içinde, yani her fold'da yalnızca eğitim verisine fit ediliyor.
