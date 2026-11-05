@@ -1,0 +1,8 @@
+{
+  "model": "Decision Tree",
+  "cv_f1_macro": 0.37,
+  "shuffled_f1_mean": 0.3097,
+  "shuffled_f1_std": 0.0287,
+  "n_permutations": 200,
+  "p_value": 0.0199
+}

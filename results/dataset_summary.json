@@ -1,0 +1,47 @@
+{
+  "shape": [
+    400,
+    10
+  ],
+  "missing_values": {
+    "Student_ID": 0,
+    "Age": 0,
+    "Gender": 0,
+    "Education_Level": 0,
+    "City": 0,
+    "AI_Tool_Used": 0,
+    "Daily_Usage_Hours": 0,
+    "Purpose": 0,
+    "Impact_on_Grades": 0,
+    "Satisfaction_Level": 0
+  },
+  "duplicate_rows": 0,
+  "repeated_student_ids": 100,
+  "target_distribution": {
+    "Improved": 139,
+    "No Change": 131,
+    "Slight Decline": 130
+  },
+  "numeric_summary": {
+    "Age": {
+      "count": 400.0,
+      "mean": 19.425,
+      "std": 2.992,
+      "min": 15.0,
+      "25%": 17.0,
+      "50%": 19.5,
+      "75%": 22.0,
+      "max": 25.0
+    },
+    "Daily_Usage_Hours": {
+      "count": 400.0,
+      "mean": 2.934,
+      "std": 1.59,
+      "min": 0.5,
+      "25%": 1.575,
+      "50%": 2.9,
+      "75%": 4.2,
+      "max": 6.0
+    }
+  }
+}
